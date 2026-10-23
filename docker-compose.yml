@@ -1,0 +1,15 @@
+# Runs the full stack: open http://localhost:3000
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080" # optional: exposes the API directly for curl examples
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
